@@ -32,35 +32,38 @@ var registerCallbacks = function (callbacks){
     if (callbacks.onLoad && typeof callbacks.onLoad === 'function') {
       _smpStore.onLoad = callbacks.onLoad;
     }
+    if (callbacks.onLoop && typeof callbacks.onLoop === 'function') {
+      _smpStore.onLoop = callbacks.onLoop;
+    }
     if (callbacks.beforePlay && typeof callbacks.beforePlay === 'function') {
       _smpStore.beforePlay = callbacks.beforePlay;
     }
     if (callbacks.onPlay && typeof callbacks.onPlay === 'function') {
-      _smpStore.beforePlay = callbacks.onPlay;
+      _smpStore.onPlay = callbacks.onPlay;
     }
     if (callbacks.beforePause && typeof callbacks.beforePause === 'function') {
-      _smpStore.beforePlay = callbacks.beforePause;
+      _smpStore.beforePause = callbacks.beforePause;
     }
     if (callbacks.onPause && typeof callbacks.onPause === 'function') {
-      _smpStore.beforePlay = callbacks.onPause;
+      _smpStore.onPause = callbacks.onPause;
     }
     if (callbacks.beforeStop && typeof callbacks.beforeStop === 'function') {
-      _smpStore.beforePlay = callbacks.beforeStop;
+      _smpStore.beforeStop = callbacks.beforeStop;
     }
     if (callbacks.onStop && typeof callbacks.onStop === 'function') {
-      _smpStore.beforePlay = callbacks.onStop;
+      _smpStore.onStop = callbacks.onStop;
     }
     if (callbacks.beforeReverse && typeof callbacks.beforeReverse === 'function') {
-      _smpStore.beforePlay = callbacks.beforeReverse;
+      _smpStore.beforeReverse = callbacks.beforeReverse;
     }
     if (callbacks.onReverse && typeof callbacks.onReverse === 'function') {
-      _smpStore.beforePlay = callbacks.onReverse;
+      _smpStore.onReverse = callbacks.onReverse;
     }
     if (callbacks.beforeForward && typeof callbacks.beforeForward === 'function') {
-      _smpStore.beforePlay = callbacks.beforeForward;
+      _smpStore.beforeForward = callbacks.beforeForward;
     }
     if (callbacks.onForward && typeof callbacks.onForward === 'function') {
-      _smpStore.beforePlay = callbacks.onForward;
+      _smpStore.onForward = callbacks.onForward;
     }
   }
 };
@@ -156,26 +159,7 @@ smpDispatcher.register(function(payload) {
               return true;
           }
 
-          switch(_smpStore.direction) {
-              case 'reverse':
-              
-              if (_smpStore.onReverse) {
-
-                _smpStore.onReverse();
-              }
-              break;
-
-            case 'forward':
-              
-              if (_smpStore.onForward) {
-
-                _smpStore.onForward();
-              }
-              break;
-
-              default:
-                return true;
-          }
+          
           clearInterval(play);
           return;
         }
@@ -208,7 +192,7 @@ smpDispatcher.register(function(payload) {
       }
 
       _smpStore.status = "stop";
-      _smpStore.frame = _smpStore.direction === "forward" ? 0 : 2;
+      _smpStore.frame = _smpStore.direction === "forward" ? -1 : 2;
       _smpStore.nextFrame();
       smpStore.emit(CHANGE_EVENT);
       break;
@@ -229,9 +213,9 @@ smpDispatcher.register(function(payload) {
     
     case smpConstants.REVERSE:
 
-      if (_smpStore.beforeReverse) {
+      if (_smpStore.onReverse) {
 
-        _smpStore.beforeReverse();
+        _smpStore.onReverse();
       }
       _smpStore.direction = "reverse";
       smpStore.emit(CHANGE_EVENT);
@@ -239,9 +223,9 @@ smpDispatcher.register(function(payload) {
 
     case smpConstants.FORWARD:
 
-      if (_smpStore.beforeForward) {
+      if (_smpStore.onForward) {
 
-        _smpStore.beforeForward();
+        _smpStore.onForward();
       }
 
       _smpStore.direction = "forward";

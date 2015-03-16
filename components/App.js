@@ -1,5 +1,6 @@
+//This file is used for example/index.html
 var React = require('react');
-var Player = require('./SpriteMediaPlayer.js');
+var SpriteMediaPlayer = require('./SpriteMediaPlayer.js');
 
 var App = React.createClass({
   render: function() {
@@ -10,17 +11,32 @@ var App = React.createClass({
         
         console.log("I loaded");
       },
+      beforePlay: function() {
+        console.log("before I played");
+      },
       onPlay: function() {
         console.log("I played");
       },
       onReverse: function() {
         console.log("I reversed");
       },
+      onForward: function() {
+        console.log("I forwardeded");
+      },
+      beforePause: function() {
+        console.log("before I paused");
+      },
       onPause: function() {
         console.log("I paused");
       },
+      beforeStop: function() {
+        console.log("before I stopped");
+      },
       onStop: function() {
         console.log("I stopped");
+      },
+      onLoop: function() {
+        console.log("I loop");
       },
     };
 
@@ -28,7 +44,7 @@ var App = React.createClass({
       <div className="container">
         <div className="row">
          <div className="col-sm-4 col-sm-offset-4">
-            <Player
+            <SpriteMediaPlayer
             width="384px"
             frames={75}
             fps={8}

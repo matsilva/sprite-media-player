@@ -101,7 +101,7 @@ var smpStore = objectAssign({}, EventEmitter.prototype, {
 
 });
 
-ProjekticDispatcher.register(function(payload) {
+smpDispatcher.register(function(payload) {
   var action = payload.action;
 
   switch (action.actionType) {
@@ -271,4 +271,4 @@ ProjekticDispatcher.register(function(payload) {
 
 });
 
-module.exports = projekticStore;
+module.exports = smpStore;

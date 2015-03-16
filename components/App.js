@@ -3,7 +3,7 @@ var Player = require('./SpriteMediaPlayer.js');
 
 var App = React.createClass({
   render: function() {
-    var sampleSprite = "../test/img/le-shoe.png";
+    var sampleSprite = "../example/img/le-shoe.png";
 
     var callbacks = {
       onLoad: function() {

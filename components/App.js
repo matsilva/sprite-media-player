@@ -1,6 +1,7 @@
 //This file is used for example/index.html
 var React = require('react');
 var SpriteMediaPlayer = require('./SpriteMediaPlayer.js');
+var PlayerControls = require('./PlayerControls.js');
 
 var App = React.createClass({
   render: function() {
@@ -8,7 +9,7 @@ var App = React.createClass({
 
     var callbacks = {
       onLoad: function() {
-        
+
         console.log("I loaded");
       },
       beforePlay: function() {
@@ -49,8 +50,7 @@ var App = React.createClass({
             frames={75}
             fps={8}
             callbacks={callbacks}
-            sprite={sampleSprite} 
-            />
+            sprite={sampleSprite} />
           </div>
         </div>
       </div>

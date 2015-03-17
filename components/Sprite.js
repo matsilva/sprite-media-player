@@ -3,7 +3,6 @@ var smpStores = require('../flux/stores/smpStores');
 var smpConstants = require('../flux/constants/smpConstants');
 var smpActions = require('../flux/actions/smpActions');
 
-
 var Sprite = React.createClass({
   propTypes: {
     url: React.PropTypes.string.isRequired,
@@ -21,7 +20,7 @@ var Sprite = React.createClass({
     };
   },
   componentDidMount: function() {
-    
+
     var spriteNode = this.refs.sprite.getDOMNode();
     smpStores.addChangeListener(this._onChange);
 
@@ -30,7 +29,7 @@ var Sprite = React.createClass({
     }.bind(this);
   },
   componentWillUnmount: function() {
-    
+
     smpStores.removeChangeListener(this._onChange);
   },
   _onChange: function() {
@@ -44,7 +43,7 @@ var Sprite = React.createClass({
   render: function() {
     var spriteContainerStyles = {
       width: this.props.width,
-      height: this.state.calculatedHeight + "px", 
+      height: this.state.calculatedHeight + "px",
       overflow: "hidden",
     };
     var spriteStyles = {

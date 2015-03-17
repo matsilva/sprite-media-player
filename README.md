@@ -2,11 +2,22 @@
 
 
 ##Options
-* sprite - Url to the sprite 
-* width - Specify the width of the media player in pixels or percentage 
+* sprite - Url to the sprite
+* width - Specify the width of the media player in pixels or percentage
 * frames - Specify how many frames the sprite contains
 * fps - Specify frames per second for playback
 * callbacks - Object containing various callbacks. See Callback API below.
+
+##Custom controls
+If you don't like the controls, you can roll your own controls view :) I would recommend making a copy of the default controls view in `components/PlayerControls.js`.
+
+```
+var MyCustomControls = require('..path/to/CustomControls');
+
+<SpriteMediaPlayer>
+  <MyCustomControls />
+</SpriteMediaPlayer>
+```
 
 ##Callback API
 ```
